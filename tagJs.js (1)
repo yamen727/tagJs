@@ -1,0 +1,260 @@
+var body = document.querySelector('body');
+body.style.padding='0'
+body.style.margin='0'
+function text(text, color) {
+  if (!color || typeof color !== "string") {
+    color = "black";
+  }
+  const span = document.createElement("span");
+  span.textContent = text;
+  span.style.color = color; // تعيين لون النص بعد إنشاء العنصر
+  body.appendChild(span);
+}
+
+
+function id(id) {
+  return document.getElementById(id);
+}
+function select(select){
+  return document.querySelector(select)
+}
+
+ function writeN(writeN) { 
+   return document.writeln(writeN);
+}
+
+function h1(h1, color, cls) {
+  const span = document.createElement("h1")
+  span.textContent = h1;
+  span.style.color = color
+  span.className=cls
+
+  body.appendChild(span);
+}
+
+
+function h2(h2, color) {
+  const span = document.createElement("h2")
+  span.textContent = h2;
+  span.style.color = color
+  body.appendChild(span);
+}
+
+function h3(h3, color, cls) {
+  const span = document.createElement("h3")
+  span.textContent = h3;
+  span.style.color = color
+    span.className=cls
+
+  body.appendChild(span);
+}
+
+
+function h4(h4, color ,  cle) {
+  const span = document.createElement("h4")
+  span.textContent = h4;
+  span.style.color = color
+    span.className=cls
+
+  body.appendChild(span);
+}
+
+
+function h5(h5, color,  cls) {
+  const span = document.createElement("h5")
+  span.textContent = h5;
+  span.style.color = color
+    span.className=cls
+
+  body.appendChild(span);
+}
+
+
+function h6(h6,color,  cls) {
+  const span = document.createElement("h6")
+  span.textContent = h6;
+  span.style.color = color
+    span.className=cls
+
+  body.appendChild(span);
+  
+}
+
+
+
+
+function button(text, color,  cls) {
+  if (!color || typeof color !== "string") {
+    color = "black";
+  }
+  const button = document.createElement("button");
+  button.textContent = text;
+  button.style.color = color;
+    button.className=cls
+button.style.display='fixed'
+  body.appendChild(button);
+}
+
+  
+  
+
+function alt(text, colorText , bg, cls) {
+  const index = alt.count++; // رقم التنبيه (يبدأ من 1)
+
+  const divAlert = document.createElement('div');
+  divAlert.style.backgroundColor = bg || '#000';
+  divAlert.style.color = colorText||'#fff';
+  divAlert.style.fontSize = '3vmax';
+  divAlert.textContent = text;
+  divAlert.style.position = 'fixed';
+  divAlert.style.width = '100%';
+  divAlert.style.height = '10%';
+  divAlert.style.marginTop = '0px';
+  divAlert.style.top = '30vmax';
+  divAlert.style.textAlign = 'center';
+  divAlert.style.margin = 'auto';
+  divAlert.style.borderRadius = '20px';
+  divAlert.className=cls
+if (alt==='block') {
+  body.style.filter='blur(10)'
+}
+  body.appendChild(divAlert);
+
+  divAlert.innerHTML += `
+  <br>
+  <button id='btn-close-${index}'>close</button>
+  `;
+
+  const btnClose = document.getElementById(`btn-close-${index}`);
+  btnClose.style.background = 'none';
+  btnClose.style.border = 'none';
+  btnClose.style.color = colorText||'#fff';
+  btnClose.style.fontSize='2vmax'
+  btnClose.addEventListener('click', function () {
+    divAlert.remove();
+  });
+}
+alt.count = 1;
+
+function up (text,colorText ,bg,  fz , cls)  {
+  const btnUp=document.createElement('button')
+  btnUp.textContent=text||'up'
+  btnUp.style.background=bg||'#333'
+  btnUp.style.borderRadius ='10px'
+  btnUp.style.border='none'
+  btnUp.style.fontSize =fz ||'3vmax'
+  btnUp.style.right='20px'
+  btnUp.style.bottom='10px'
+  btnUp.style.position='fixed'
+  btnUp.style.color = colorText||'#fff'
+  btnUp.className=cls
+  body.appendChild (btnUp)
+  btnUp.addEventListener('click', function(){
+    scroll({
+      top:0, behavior:'smooth'
+    })
+  })
+}
+
+function p(text, options = {}) {
+  const { colorText, bg, fz, cls ,textBtnP, url ,urlColor} = options;
+
+  const p = document.createElement('p');
+  p.textContent = text;
+
+  if (colorText) p.style.color = colorText;
+  if (bg) p.style.background = bg;
+  if (fz) p.style.fontSize = fz || '2vmax';
+  if (cls) p.className = cls;
+
+  body.appendChild(p);
+if(button==='string'){
+  const button = document.createElement('button')
+  button.textContent=textBtnP
+  p.appendChild(button)
+}
+
+  if (url) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.textContent = text; // أو نص الرابط المخصص إن وجد
+    a.style.textDecoration='none'
+    a.style.color=urlColor||'#444'
+    p.appendChild(a);
+  
+}
+  return p;
+}
+
+
+
+function pArabic(text, options = {}) {
+  const { colorText, bg, fz, cls ,url,urlColor} = options;
+
+  const p = document.createElement('p');
+  p.textContent = text;
+
+  if (colorText) p.style.color = colorText;
+  if (bg) p.style.background = bg;
+  if (fz) p.style.fontSize = fz||'2vmax';
+  if (cls) p.className = cls;
+if (url) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.textContent = text; // أو نص الرابط المخصص إن وجد
+    a.style.textDecoration='none'
+    a.style.color=urlColor||'#444'
+    p.appendChild(a);
+}
+  p.style.direction = 'rtl'; // تأكد من اتجاه النص من اليمين إلى اليسار
+
+  body.appendChild(p);
+
+  return p;
+}
+
+function navBar(
+  text,colorText ,bg,  fz, width , pos , cls
+  ){
+  const nav=document.createElement('nav')
+  nav.style.color = colorText||'#fff'
+  nav.style.background=bg||'#333'
+  nav.textContent=text
+  nav.style.fontSize=fz||'4vmax'
+  nav.style.position=pos
+  nav.style.width=width||'100%'
+  nav.style.top='0'
+  nav.style.marginRight='0'
+  nav.style.marginLeft='0'
+  nav.style.padding='0'
+  nav.style.margin='0'
+  nav.className=cls
+  body.appendChild(nav)
+}
+function imgs(
+  src,options={},width,height,bg,pos,boxShadow
+  ){
+    var img=document.createElement('img')
+  if(src)  img.src=src
+  if(width) img.style.width=width||'30vmax'
+  if(height) img.style.height=height
+  if(bg) img.style.background=bg
+  if(pos) img.style.position=pos
+  if(boxShadow) img.style.boxShadow=boxShadow
+  return img;
+}
+
+function footer(text,colorText ,bg,  fz , cls){
+  const fot=document.createElement('footer');
+  fot.textContent=text
+  fot.style.color= colorText ||'#fff'
+  fot.style.background=bg||'#555'
+  fot.style.fontSize=fz
+  fot.style.textAlign='center'
+  fot.className=cls
+  body.appendChild(fot)
+}
+function tag(tags){
+  const body = document.querySelector('body')
+  body.innerHTML+=tags+"<br>"
+  }
